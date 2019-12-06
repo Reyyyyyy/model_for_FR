@@ -109,14 +109,14 @@ weights={'wc1':tf.Variable(tf.random.truncated_normal([view_1,view_1,3,num_filte
          'out':tf.Variable(tf.random.truncated_normal([fc_neuron_num_1,2],stddev=1/192)/np.sqrt(192/2))
          }
 
-biases={'bc1':tf.zeros([num_filter_1]),
-        'bc2':tf.zeros([num_filter_2])+0.1,
-        'bc3':tf.zeros([num_filter_3]),
-        #'bc4':tf.zeros([num_filter_4]),
-        #'bc5':tf.zeros([num_filter_5]),
-        'bf1':tf.zeros([fc_neuron_num_1])+0.1,
-        #'bf2':tf.zeros([fc_neuron_num_out])+0.1,
-        'out':tf.zeros([2]),
+biases={'bc1':tf.Variable(tf.zeros([num_filter_1])),
+        'bc2':tf.Variable(tf.zeros([num_filter_2])+0.1),
+        'bc3':tf.Variable(tf.zeros([num_filter_3])),
+        #'bc4':tf.Variable(tf.zeros([num_filter_4])),
+        #'bc5':tf.Variable(tf.zeros([num_filter_5])),
+        'bf1':tf.Variable(tf.zeros([fc_neuron_num_1])+0.1),
+        #'bf2':tf.Variable(tf.zeros([fc_neuron_num_out])+0.1),
+        'out':tf.Variable(tf.zeros([2])),
         } 
 x = tf.placeholder(tf.float32,[None,224,224,3])
 y = tf.placeholder(tf.float32,[None,2])
