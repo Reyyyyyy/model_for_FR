@@ -7,7 +7,7 @@ import json
 import random
 from sklearn.utils import shuffle
 
-#模型精度：0.488→0.77
+#模型精度：0.488→0.77→0.99
 
 #使用GPU
 #tf.device('/gpu:1')需要配置GPU环境
@@ -100,12 +100,12 @@ def conv_net(x,weights,biases,use_bn,use_dropout):
     return out
 
 weights={'wc1':tf.Variable(tf.random.truncated_normal([view_1,view_1,3,num_filter_1],stddev=0.02)),
-         'wc2':tf.Variable(tf.random.truncated_normal([view_2,view_2,num_filter_1,num_filter_2],stddev=0.02))/np.sqrt(num_filter_1/2),
-         'wc3':tf.Variable(tf.random.truncated_normal([view_3,view_3,num_filter_2,num_filter_3],stddev=0.02))/np.sqrt(num_filter_2/2),
-         #'wc4':tf.Variable(tf.random.truncated_normal([view_4,view_4,num_filter_3,num_filter_4],stddev=0.05))/np.sqrt(num_filter_3/2),
-         #'wc5':tf.Variable(tf.random.truncated_normal([view_5,view_5,num_filter_4,num_filter_5],stddev=0.05))/np.sqrt(num_filter_4/2),
-         'wf1':tf.Variable(tf.random.truncated_normal([56*56*num_filter_3,fc_neuron_num_1],stddev=0.04))/np.sqrt(num_filter_3/2),
-         #'wf2':tf.Variable(tf.random.truncated_normal([fc_neuron_num_1,fc_neuron_num_out],stddev=0.04))/np.sqrt(fc_neuron_num_1/2),
+         'wc2':tf.Variable(tf.random.truncated_normal([view_2,view_2,num_filter_1,num_filter_2],stddev=0.02)/np.sqrt(num_filter_1/2)),
+         'wc3':tf.Variable(tf.random.truncated_normal([view_3,view_3,num_filter_2,num_filter_3],stddev=0.02)/np.sqrt(num_filter_2/2)),
+         #'wc4':tf.Variable(tf.random.truncated_normal([view_4,view_4,num_filter_3,num_filter_4],stddev=0.05)/np.sqrt(num_filter_3/2)),
+         #'wc5':tf.Variable(tf.random.truncated_normal([view_5,view_5,num_filter_4,num_filter_5],stddev=0.05)/np.sqrt(num_filter_4/2)),
+         'wf1':tf.Variable(tf.random.truncated_normal([56*56*num_filter_3,fc_neuron_num_1],stddev=0.04)/np.sqrt(num_filter_3/2)),
+         #'wf2':tf.Variable(tf.random.truncated_normal([fc_neuron_num_1,fc_neuron_num_out],stddev=0.04)/np.sqrt(fc_neuron_num_1/2)),
          'out':tf.Variable(tf.random.truncated_normal([fc_neuron_num_1,2],stddev=1/192)/np.sqrt(192/2))
          }
 
