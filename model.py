@@ -122,11 +122,6 @@ x = tf.placeholder(tf.float32,[None,224,224,3])
 y = tf.placeholder(tf.float32,[None,2])
 
 pred = conv_net(x,weights,biases,use_bn,use_dropout)
-#抑制样本的不平衡性
-h = tf.reduce_mean(pred[:,0])*0.01
-#pred[:,1] += h  tensorflow里的Tensor不能直接赋值
-
-#--------------
 cost=tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=pred+h,labels=y))
 optimizer = tf.train.AdamOptimizer(lr).minimize(cost)
 accuracy = tf.reduce_mean(tf.cast(tf.equal(tf.argmax(pred,axis=1),tf.argmax(y,axis=1)),dtype=tf.float32))
